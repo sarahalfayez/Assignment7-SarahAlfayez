@@ -63,7 +63,7 @@ app.post("/links", function(req, res) {
     });
 });
 // GET /click/:title
-app.get("/click/:" + pathname, function(req, res) {
+app.get("/click/:title", function(req, res) {
     console.log(req.originalUrl);
     var pathArray = req.originalUrl.split("/");
     var path = pathArray[2];
