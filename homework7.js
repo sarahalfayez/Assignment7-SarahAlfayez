@@ -1,7 +1,12 @@
+// Client-side code
+/* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
+// Server-side code
+/* jshint node: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
+"use strict";
 var express = require("express"),
     http = require("http"),
     bodyParser = require("body-parser"),
-    mongoDB = require('mongodb'),
+    mongoDB = require("mongodb"),
     MongoClient = mongoDB.MongoClient,
     app = express();
 
@@ -13,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 var url = "mongodb://localhost/hw7";
-var db, pathname, link;
+var db, pathname;
 
 MongoClient.connect(url, function(err, database) {
     if (err) {
@@ -60,7 +65,7 @@ app.post("/links", function(req, res) {
 // GET /click/:title
 app.get("/click/:" + pathname, function(req, res) {
     console.log(req.originalUrl);
-    var pathArray = req.originalUrl.split('/');
+    var pathArray = req.originalUrl.split("/");
     var path = pathArray[2];
     console.log(path);
     db.collection("links").findOneAndUpdate({
